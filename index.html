@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>‎Text Transform</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+      color: #00fff7;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    textarea, button {
+      width: 90%;
+      max-width: 600px;
+      padding: 15px;
+      margin: 20px auto;
+      border-radius: 12px;
+      border: 2px solid #00fff7;
+      background: #000;
+      color: #00fff7;
+      font-size: 18px;
+      resize: vertical;
+    }
+    button {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00fff7;
+      color: #000;
+    }
+    .output {
+      margin-top: 30px;
+      font-size: 20px;
+      word-wrap: break-word;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #0ff;
+    }
+    p {
+      color: #aaa;
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 16px;
+      color: #888;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>🔐‎ Mehedi T T</h1>
+  <textarea id="inputText" rows="5" placeholder="Type your message..."></textarea>
+  <br>
+  <button onclick="encodeText()">Encode</button>
+  <button onclick="decodeText()">Decode</button>
+  <button onclick="clearAll()">Clear</button>
+
+  <div class="output" id="outputArea"></div>
+
+  <div class="footer">Made by Mr.X</div>
+
+  <script>
+    function encodeText() {
+      const text = document.getElementById('inputText').value;
+      let encoded = '';
+      for (let i = 0; i < text.length; i++) {
+        encoded += text.charCodeAt(i).toString(16).padStart(4, '0');
+      }
+      document.getElementById('outputArea').innerText = 'Encoded: ' + encoded;
+    }
+
+    function decodeText() {
+      const encoded = document.getElementById('inputText').value;
+      let decoded = '';
+      for (let i = 0; i < encoded.length; i += 4) {
+        const chunk = encoded.substr(i, 4);
+        decoded += String.fromCharCode(parseInt(chunk, 16));
+      }
+      document.getElementById('outputArea').innerText = 'Decoded: ' + decoded;
+    }
+
+    function clearAll() {
+      document.getElementById('inputText').value = '';
+      document.getElementById('outputArea').innerText = '';
+    }
+  </script>
+</body>
+</html>
